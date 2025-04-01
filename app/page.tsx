@@ -6,44 +6,43 @@ import Link from "next/link";
 import {
   Menu,
   X,
+  GitlabIcon as GitHub,
   Twitter,
   Linkedin,
-  GitlabIcon as GitHub,
   Mail,
   MapPin,
-  Phone,
   ArrowRight,
   ExternalLink,
   Database,
   Server,
   Code,
   Globe,
-  CheckCircle,
-  Award,
-  Zap,
-  Users,
   Download,
   Clock,
   Calendar,
   Briefcase,
   GraduationCap,
+  Phone,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { TypingEffect } from "@/components/typing-effect";
 import { MouseFollower } from "@/components/mouse-follower";
 import { ParticlesBackground } from "@/components/particles-background";
 import { AnimatedGradientBackground } from "@/components/animated-gradient-background";
+import { useTheme } from "next-themes";
+import MobileNavigation from "@/components/MobileNavigation";
+import handleDownload from "@/lib/download";
+import { navItems } from "@/ constants/data";
 import { Card3D } from "@/components/3d-card";
 import { AnimatedText } from "@/components/animated-text";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { AboutTabs } from "@/components/about-tabs";
 import { ContactForm } from "@/components/contact-form";
 import { AvailabilityCalendar } from "@/components/availability-calendar";
-import { useTheme } from "next-themes";
-import MobileNavigation from "@/components/MobileNavigation";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Footer from "@/components/Footer";
+import { TypingEffect } from "@/components/typing-effect";
+import { stats, skillsData, projects, testimonials } from "@/ constants/data";
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -64,14 +63,7 @@ export default function Portfolio() {
       setScrollProgress((currentScroll / totalScroll) * 100);
 
       // Determine active section based on scroll position
-      const sections = [
-        "home",
-        "about",
-        "projects",
-        "skills",
-        "testimonials",
-        "contact",
-      ];
+      const sections = ["home", "projects", "skills", "about", "contact"];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -116,137 +108,10 @@ export default function Portfolio() {
     setMounted(true);
   }, []);
 
-  const navItems = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "projects", label: "Projects" },
-    { id: "skills", label: "Skills" },
-    { id: "testimonials", label: "Testimonials" },
-    { id: "contact", label: "Contact" },
-  ];
-
-  const skillsData = [
-    { name: "MongoDB", level: 95, category: "Backend" },
-    { name: "Express.js", level: 90, category: "Backend" },
-    { name: "React.js", level: 95, category: "Frontend" },
-    { name: "Node.js", level: 92, category: "Backend" },
-    { name: "JavaScript", level: 95, category: "Frontend" },
-    { name: "TypeScript", level: 85, category: "Frontend" },
-    { name: "Next.js", level: 88, category: "Frontend" },
-    { name: "Redux", level: 80, category: "Frontend" },
-    { name: "GraphQL", level: 75, category: "Backend" },
-    { name: "REST API", level: 90, category: "Backend" },
-    { name: "AWS", level: 70, category: "DevOps" },
-    { name: "Docker", level: 75, category: "DevOps" },
-  ];
-
-  const projects = [
-    {
-      id: 1,
-      title: "E-commerce Platform",
-      category: "Full Stack",
-      description:
-        "Complete MERN stack e-commerce solution with payment integration, admin dashboard, and real-time inventory management.",
-      image: "/placeholder.svg?height=600&width=600",
-      tech: ["MongoDB", "Express", "React", "Node.js", "Redux", "Stripe API"],
-    },
-    {
-      id: 2,
-      title: "Real-time Chat Application",
-      category: "Full Stack",
-      description:
-        "Scalable chat platform with real-time messaging, user authentication, and message persistence using Socket.io and MongoDB.",
-      image: "/placeholder.svg?height=600&width=600",
-      tech: ["MongoDB", "Express", "React", "Node.js", "Socket.io", "JWT"],
-    },
-    {
-      id: 3,
-      title: "Task Management System",
-      category: "Full Stack",
-      description:
-        "Collaborative project management tool with drag-and-drop interfaces, team collaboration features, and automated notifications.",
-      image: "/placeholder.svg?height=600&width=600",
-      tech: ["MongoDB", "Express", "React", "Node.js", "Redux", "WebSockets"],
-    },
-    {
-      id: 4,
-      title: "Healthcare Portal",
-      category: "Full Stack",
-      description:
-        "Patient-centered healthcare portal with appointment scheduling, medical record management, and secure doctor-patient communication.",
-      image: "/placeholder.svg?height=600&width=600",
-      tech: ["MongoDB", "Express", "React", "Node.js", "GraphQL", "Auth0"],
-    },
-    {
-      id: 5,
-      title: "Content Management System",
-      category: "Backend",
-      description:
-        "Headless CMS with custom API endpoints, content modeling, and multi-user collaboration features for content creators.",
-      image: "/placeholder.svg?height=600&width=600",
-      tech: ["MongoDB", "Express", "Node.js", "GraphQL", "Redis", "AWS S3"],
-    },
-    {
-      id: 6,
-      title: "Analytics Dashboard",
-      category: "Frontend",
-      description:
-        "Interactive data visualization dashboard with real-time updates, customizable widgets, and data export capabilities.",
-      image: "/placeholder.svg?height=600&width=600",
-      tech: [
-        "React",
-        "Redux",
-        "D3.js",
-        "WebSockets",
-        "Material UI",
-        "Chart.js",
-      ],
-    },
-  ];
-
-  const testimonials = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      role: "CTO",
-      company: "TechCorp",
-      quote:
-        "Tony delivered an exceptional MERN stack application that exceeded our expectations. His deep understanding of both frontend and backend technologies resulted in a seamless, high-performance solution.",
-      image: "/placeholder.svg?height=100&width=100",
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      role: "Startup Founder",
-      company: "InnovateLabs",
-      quote:
-        "Working with Tony was a game-changer for our startup. His full-stack expertise helped us launch our MVP in record time, with clean code and excellent architecture decisions.",
-      image: "/placeholder.svg?height=100&width=100",
-    },
-    {
-      id: 3,
-      name: "Emily Rodriguez",
-      role: "Product Manager",
-      company: "GlobalSoft",
-      quote:
-        "Tony's ability to translate complex business requirements into elegant technical solutions is remarkable. His MERN stack implementation has been robust, scalable, and easy to maintain.",
-      image: "/placeholder.svg?height=100&width=100",
-    },
-  ];
-
-  // Stats for the about section
-  const stats = [
-    { value: 50, label: "Projects Completed", icon: CheckCircle },
-    { value: 15, label: "Happy Clients", icon: Users },
-    { value: 5, label: "Years Experience", icon: Award },
-    { value: 99, label: "Uptime Percentage", icon: Zap },
-  ];
-
   // Animation classes
-  const fadeIn =
-    "opacity-0 translate-y-8 transition-all duration-700 ease-out data-animate";
+  const fadeIn = "data-animate";
   const fadeInDelay = (delay: number) =>
-    `opacity-0 translate-y-8 transition-all duration-700 delay-${delay} ease-out data-animate`;
+    `data-animate style="animation-delay: ${delay}ms"`;
 
   if (!mounted) {
     return null;
@@ -308,7 +173,7 @@ export default function Portfolio() {
       )}
       {/* <MobileNavigation activeSection={activeSection} /> */}
 
-      <div className="grid grid-cols-1 lg:grid-cols-[350px_1fr] xl:grid-cols-[400px_1fr]">
+      <div>
         {/* Left Sidebar - Fixed on desktop */}
         <div className="hidden lg:block fixed h-screen w-[350px] xl:w-[400px] bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-md p-8 overflow-y-auto transition-colors duration-300 border-r border-gray-200 dark:border-gray-800">
           <div className="space-y-10 h-full flex flex-col">
@@ -329,13 +194,20 @@ export default function Portfolio() {
                   Muhammad Sami
                 </h1>
                 <p className="text-gray-600 dark:text-gray-400">
-                  MERN STACK DEVELOPER
+                  <span className="gradient-text glow-text">
+                    <TypingEffect
+                      texts={["Web Developer", "MERN Developer"]}
+                      typingSpeed={80}
+                      deletingSpeed={40}
+                      delayBetweenTexts={2000}
+                    />
+                  </span>
                 </p>
               </div>
             </div>
 
             {/* Theme Toggle */}
-            <div className="absolute top-8 right-8">
+            <div className="absolute top-1 right-8">
               <ThemeToggle />
             </div>
 
@@ -370,12 +242,13 @@ export default function Portfolio() {
             <div className="space-y-6">
               <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
                 I'm a passionate MERN stack developer specializing in building
-                scalable web applications with MongoDB, Express, React, and
-                Node.js.
+                scalable web applications with NextJs, TypeScript, React,
+                Node.js Express, and MongoDB.
               </p>
               <Button
                 variant="outline"
                 className="rounded-full gradient-border overflow-hidden group"
+                onClick={handleDownload}
               >
                 <span className="relative z-10 group-hover:text-white transition-colors duration-300">
                   Download Resume
@@ -388,15 +261,15 @@ export default function Portfolio() {
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 group hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
                 <Mail className="w-4 h-4 group-hover:animate-bounce" />
-                <span>tony@example.com</span>
+                <span>muhammadsami1242@gmail.com</span>
               </div>
               <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 group hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
                 <Phone className="w-4 h-4 group-hover:animate-bounce" />
-                <span>+1 (555) 123-4567</span>
+                <span>+92 (307) 403-1207</span>
               </div>
               <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 group hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
                 <MapPin className="w-4 h-4 group-hover:animate-bounce" />
-                <span>San Francisco, CA</span>
+                <span>Lahore, Pakistan</span>
               </div>
             </div>
 
@@ -419,7 +292,7 @@ export default function Portfolio() {
                   className="rounded-full hover:bg-blue-500/20 hover:text-blue-500 transition-all duration-300"
                   asChild
                 >
-                  <Link href="#">
+                  <Link href="https://www.linkedin.com/in/muhammad-sami1/">
                     <Linkedin className="w-5 h-5" />
                   </Link>
                 </Button>
@@ -429,13 +302,13 @@ export default function Portfolio() {
                   className="rounded-full hover:bg-blue-500/20 hover:text-blue-500 transition-all duration-300"
                   asChild
                 >
-                  <Link href="#">
+                  <Link href="https://github.com/MuhammadSami1">
                     <GitHub className="w-5 h-5" />
                   </Link>
                 </Button>
               </div>
               <div className="text-gray-600 dark:text-gray-400 text-sm">
-                <p>© 2023 Tony B. All rights reserved.</p>
+                <p>© 2023 Muhammad Sami All rights reserved.</p>
                 <div className="flex gap-4">
                   <Link
                     href="#"
@@ -475,7 +348,7 @@ export default function Portfolio() {
                   Muhammad Sami
                 </h1>
                 <p className="text-gray-600 dark:text-gray-400">
-                  MERN STACK DEVELOPER
+                  MERN DEVELOPER
                 </p>
               </div>
             </div>
@@ -486,7 +359,7 @@ export default function Portfolio() {
             {/* Hero Section */}
             <section
               id="home"
-              className="min-h-[90vh] flex flex-col justify-center relative"
+              className="min-h-[90vh] flex flex-col justify-center relative "
               ref={(el) => {
                 sectionsRef.current.home = el;
               }}
@@ -502,8 +375,7 @@ export default function Portfolio() {
                     <TypingEffect
                       texts={[
                         "Web Applications",
-                        "MERN Stack Solutions",
-                        "Scalable APIs",
+                        "MERN Solutions",
                         "User Experiences",
                       ]}
                       typingSpeed={80}
@@ -530,256 +402,6 @@ export default function Portfolio() {
                     Contact Me
                   </Button>
                 </div>
-              </div>
-            </section>
-
-            {/* About Section */}
-            <section
-              id="about"
-              className="py-20 relative"
-              ref={(el) => {
-                sectionsRef.current.about = el;
-              }}
-            >
-              {/* Decorative blob */}
-              <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
-
-              <h2
-                className={`text-3xl font-mono mb-10 gradient-text font-bold ${fadeIn}`}
-              >
-                About Me
-              </h2>
-
-              {/* Bio Section */}
-              <div className={`mb-16 ${fadeIn}`}>
-                <Card3D className="bg-white dark:bg-gray-800 p-8 rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div className="md:col-span-1">
-                      <div className="relative w-full aspect-square max-w-[300px] mx-auto">
-                        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 blur-md opacity-70"></div>
-                        <Image
-                          src="/placeholder.svg?height=300&width=300"
-                          alt="Tony B."
-                          width={300}
-                          height={300}
-                          className="rounded-xl relative z-10 object-cover"
-                        />
-                      </div>
-
-                      <div className="mt-6 space-y-4">
-                        <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 flex items-center justify-center gap-2">
-                          <Download className="w-4 h-4" />
-                          Download Resume
-                        </Button>
-
-                        <div className="flex justify-center gap-4">
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="rounded-full hover:bg-blue-500/20 hover:text-blue-500 transition-all duration-300"
-                          >
-                            <Twitter className="w-5 h-5" />
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="rounded-full hover:bg-blue-500/20 hover:text-blue-500 transition-all duration-300"
-                          >
-                            <Linkedin className="w-5 h-5" />
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="rounded-full hover:bg-blue-500/20 hover:text-blue-500 transition-all duration-300"
-                          >
-                            <GitHub className="w-5 h-5" />
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="md:col-span-2 space-y-6">
-                      <div>
-                        <h3 className="text-2xl font-bold gradient-text mb-4">
-                          Who I Am
-                        </h3>
-                        <div className="space-y-4 text-gray-700 dark:text-gray-300">
-                          <p>
-                            Hello! I'm Tony, a passionate MERN stack developer
-                            with over 5 years of experience building web
-                            applications that combine beautiful interfaces with
-                            powerful functionality.
-                          </p>
-                          <p>
-                            My journey in web development began with a
-                            fascination for creating interactive experiences.
-                            This led me to specialize in the MERN stack
-                            (MongoDB, Express, React, and Node.js), where I've
-                            found the perfect balance between frontend
-                            creativity and backend robustness.
-                          </p>
-                          <p>
-                            I approach each project with a focus on clean code,
-                            performance optimization, and user-centered design.
-                            Whether I'm building a complex e-commerce platform
-                            or a simple landing page, I bring the same level of
-                            dedication and attention to detail.
-                          </p>
-                          <p>
-                            When I'm not coding, you'll find me contributing to
-                            open-source projects, mentoring junior developers,
-                            or exploring new technologies to stay at the cutting
-                            edge of web development.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                            <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                          </div>
-                          <div>
-                            <h4 className="text-sm text-gray-500 dark:text-gray-400">
-                              Location
-                            </h4>
-                            <p className="font-medium">
-                              San Francisco, California
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
-                            <Briefcase className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-                          </div>
-                          <div>
-                            <h4 className="text-sm text-gray-500 dark:text-gray-400">
-                              Experience
-                            </h4>
-                            <p className="font-medium">5+ Years</p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                            <GraduationCap className="w-5 h-5 text-green-600 dark:text-green-400" />
-                          </div>
-                          <div>
-                            <h4 className="text-sm text-gray-500 dark:text-gray-400">
-                              Education
-                            </h4>
-                            <p className="font-medium">
-                              Master's in Computer Science
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                            <Clock className="w-5 h-5 text-red-600 dark:text-red-400" />
-                          </div>
-                          <div>
-                            <h4 className="text-sm text-gray-500 dark:text-gray-400">
-                              Availability
-                            </h4>
-                            <p className="font-medium">Full-time / Freelance</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Card3D>
-              </div>
-
-              {/* Stats */}
-              <div
-                className={`grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 ${fadeIn}`}
-              >
-                {stats.map((stat, index) => (
-                  <Card3D
-                    key={index}
-                    className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg"
-                    glareIntensity={0.1}
-                  >
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-4">
-                        <stat.icon className="w-6 h-6 text-blue-500" />
-                      </div>
-                      <h3 className="text-3xl font-bold gradient-text">
-                        <AnimatedCounter
-                          end={stat.value}
-                          suffix={stat.label === "Uptime Percentage" ? "%" : ""}
-                        />
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-400 mt-1">
-                        {stat.label}
-                      </p>
-                    </div>
-                  </Card3D>
-                ))}
-              </div>
-
-              {/* Experience, Education, Interests Tabs */}
-              <div className={`mb-16 ${fadeInDelay(200)}`}>
-                <AboutTabs />
-              </div>
-
-              {/* MERN Stack Highlight */}
-              <div
-                className={`mt-16 grid grid-cols-1 md:grid-cols-4 gap-6 ${fadeInDelay(
-                  400
-                )}`}
-              >
-                {[
-                  {
-                    title: "MongoDB",
-                    icon: Database,
-                    color: "green",
-                    description:
-                      "NoSQL database for flexible, scalable data storage with powerful querying capabilities.",
-                  },
-                  {
-                    title: "Express.js",
-                    icon: Server,
-                    color: "red",
-                    description:
-                      "Fast, unopinionated web framework for Node.js that simplifies API development.",
-                  },
-                  {
-                    title: "React.js",
-                    icon: Code,
-                    color: "blue",
-                    description:
-                      "Component-based UI library for building interactive and reusable user interfaces.",
-                  },
-                  {
-                    title: "Node.js",
-                    icon: Globe,
-                    color: "green",
-                    description:
-                      "JavaScript runtime for building fast and scalable server-side applications.",
-                  },
-                ].map((item, index) => (
-                  <Card3D
-                    key={index}
-                    className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    <div
-                      className={`w-12 h-12 bg-${item.color}-100 dark:bg-${item.color}-900/30 rounded-lg mb-4 flex items-center justify-center`}
-                    >
-                      <item.icon
-                        className={`w-6 h-6 text-${item.color}-600 dark:text-${item.color}-400`}
-                      />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2 gradient-text">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      {item.description}
-                    </p>
-                  </Card3D>
-                ))}
               </div>
             </section>
 
@@ -1069,7 +691,6 @@ export default function Portfolio() {
                 </TabsContent>
               </Tabs>
             </section>
-
             {/* Skills Section */}
             <section
               id="skills"
@@ -1192,7 +813,6 @@ export default function Portfolio() {
                 </div>
               </div>
             </section>
-
             {/* Testimonials Section */}
             <section
               id="testimonials"
@@ -1260,6 +880,256 @@ export default function Portfolio() {
                         </p>
                       </div>
                     </div>
+                  </Card3D>
+                ))}
+              </div>
+            </section>
+
+            {/* About Section */}
+            <section
+              id="about"
+              className="py-20 relative"
+              ref={(el) => {
+                sectionsRef.current.about = el;
+              }}
+            >
+              {/* Decorative blob */}
+              <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
+
+              <h2
+                className={`text-3xl font-mono mb-10 gradient-text font-bold ${fadeIn}`}
+              >
+                About Me
+              </h2>
+
+              {/* Bio Section */}
+              <div className={`mb-16 ${fadeIn}`}>
+                <Card3D className="bg-white dark:bg-gray-800 p-8 rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="md:col-span-1">
+                      <div className="relative w-full aspect-square max-w-[300px] mx-auto">
+                        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 blur-md opacity-70"></div>
+                        <Image
+                          src="/placeholder.svg?height=300&width=300"
+                          alt="Tony B."
+                          width={300}
+                          height={300}
+                          className="rounded-xl relative z-10 object-cover"
+                        />
+                      </div>
+
+                      <div className="mt-6 space-y-4">
+                        <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 flex items-center justify-center gap-2">
+                          <Download className="w-4 h-4" />
+                          Download Resume
+                        </Button>
+
+                        <div className="flex justify-center gap-4">
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="rounded-full hover:bg-blue-500/20 hover:text-blue-500 transition-all duration-300"
+                          >
+                            <Twitter className="w-5 h-5" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="rounded-full hover:bg-blue-500/20 hover:text-blue-500 transition-all duration-300"
+                          >
+                            <Linkedin className="w-5 h-5" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="rounded-full hover:bg-blue-500/20 hover:text-blue-500 transition-all duration-300"
+                          >
+                            <GitHub className="w-5 h-5" />
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="md:col-span-2 space-y-6">
+                      <div>
+                        <h3 className="text-2xl font-bold gradient-text mb-4">
+                          Who I Am
+                        </h3>
+                        <div className="space-y-4 text-gray-700 dark:text-gray-300">
+                          <p>
+                            Hello! I'm Tony, a passionate MERN stack developer
+                            with over 5 years of experience building web
+                            applications that combine beautiful interfaces with
+                            powerful functionality.
+                          </p>
+                          <p>
+                            My journey in web development began with a
+                            fascination for creating interactive experiences.
+                            This led me to specialize in the MERN stack
+                            (MongoDB, Express, React, and Node.js), where I've
+                            found the perfect balance between frontend
+                            creativity and backend robustness.
+                          </p>
+                          <p>
+                            I approach each project with a focus on clean code,
+                            performance optimization, and user-centered design.
+                            Whether I'm building a complex e-commerce platform
+                            or a simple landing page, I bring the same level of
+                            dedication and attention to detail.
+                          </p>
+                          <p>
+                            When I'm not coding, you'll find me contributing to
+                            open-source projects, mentoring junior developers,
+                            or exploring new technologies to stay at the cutting
+                            edge of web development.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                            <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                          </div>
+                          <div>
+                            <h4 className="text-sm text-gray-500 dark:text-gray-400">
+                              Location
+                            </h4>
+                            <p className="font-medium">
+                              San Francisco, California
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
+                            <Briefcase className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                          </div>
+                          <div>
+                            <h4 className="text-sm text-gray-500 dark:text-gray-400">
+                              Experience
+                            </h4>
+                            <p className="font-medium">5+ Years</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                            <GraduationCap className="w-5 h-5 text-green-600 dark:text-green-400" />
+                          </div>
+                          <div>
+                            <h4 className="text-sm text-gray-500 dark:text-gray-400">
+                              Education
+                            </h4>
+                            <p className="font-medium">
+                              Master's in Computer Science
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+                            <Clock className="w-5 h-5 text-red-600 dark:text-red-400" />
+                          </div>
+                          <div>
+                            <h4 className="text-sm text-gray-500 dark:text-gray-400">
+                              Availability
+                            </h4>
+                            <p className="font-medium">Full-time / Freelance</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Card3D>
+              </div>
+
+              {/* Stats */}
+              <div
+                className={`grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 ${fadeIn}`}
+              >
+                {stats.map((stat, index) => (
+                  <Card3D
+                    key={index}
+                    className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+                    glareIntensity={0.1}
+                  >
+                    <div className="flex flex-col items-center text-center">
+                      <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-4">
+                        <stat.icon className="w-6 h-6 text-blue-500" />
+                      </div>
+                      <h3 className="text-3xl font-bold gradient-text">
+                        <AnimatedCounter
+                          end={stat.value}
+                          suffix={stat.label === "Uptime Percentage" ? "%" : ""}
+                        />
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-400 mt-1">
+                        {stat.label}
+                      </p>
+                    </div>
+                  </Card3D>
+                ))}
+              </div>
+
+              {/* Experience, Education, Interests Tabs */}
+              <div className={`mb-16 ${fadeInDelay(200)}`}>
+                <AboutTabs />
+              </div>
+
+              {/* MERN Stack Highlight */}
+              <div
+                className={`mt-16 grid grid-cols-1 md:grid-cols-4 gap-6 ${fadeInDelay(
+                  400
+                )}`}
+              >
+                {[
+                  {
+                    title: "MongoDB",
+                    icon: Database,
+                    color: "green",
+                    description:
+                      "NoSQL database for flexible, scalable data storage with powerful querying capabilities.",
+                  },
+                  {
+                    title: "Express.js",
+                    icon: Server,
+                    color: "red",
+                    description:
+                      "Fast, unopinionated web framework for Node.js that simplifies API development.",
+                  },
+                  {
+                    title: "React.js",
+                    icon: Code,
+                    color: "blue",
+                    description:
+                      "Component-based UI library for building interactive and reusable user interfaces.",
+                  },
+                  {
+                    title: "Node.js",
+                    icon: Globe,
+                    color: "green",
+                    description:
+                      "JavaScript runtime for building fast and scalable server-side applications.",
+                  },
+                ].map((item, index) => (
+                  <Card3D
+                    key={index}
+                    className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    <div
+                      className={`w-12 h-12 bg-${item.color}-100 dark:bg-${item.color}-900/30 rounded-lg mb-4 flex items-center justify-center`}
+                    >
+                      <item.icon
+                        className={`w-6 h-6 text-${item.color}-600 dark:text-${item.color}-400`}
+                      />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2 gradient-text">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      {item.description}
+                    </p>
                   </Card3D>
                 ))}
               </div>
@@ -1338,7 +1208,7 @@ export default function Portfolio() {
                           Email
                         </p>
                         <p className="group-hover:text-blue-500 transition-colors">
-                          tony@example.com
+                          muhammadsami1242@gmail.com
                         </p>
                       </div>
                     </div>
@@ -1351,7 +1221,7 @@ export default function Portfolio() {
                           Phone
                         </p>
                         <p className="group-hover:text-blue-500 transition-colors">
-                          +1 (555) 123-4567
+                          +92 (307) 403-1207
                         </p>
                       </div>
                     </div>
@@ -1364,7 +1234,7 @@ export default function Portfolio() {
                           Location
                         </p>
                         <p className="group-hover:text-blue-500 transition-colors">
-                          San Francisco, CA
+                          Lahore, Pakistan
                         </p>
                       </div>
                     </div>
@@ -1372,7 +1242,6 @@ export default function Portfolio() {
                 </div>
               </div>
             </section>
-
             {/* Footer - Mobile only */}
             <Footer />
           </div>

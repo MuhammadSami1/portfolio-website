@@ -16,7 +16,7 @@ export function Card3D({
   children,
   className = "",
   glareIntensity = 0.2,
-  rotationIntensity = 10,
+  rotationIntensity = 20,
   borderRadius = "1rem",
 }: Card3DProps) {
   const [rotation, setRotation] = useState({ x: 0, y: 0 })

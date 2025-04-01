@@ -1,47 +1,49 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
 export function MouseFollower() {
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [isHovering, setIsHovering] = useState(false)
-  const [isVisible, setIsVisible] = useState(false)
-  const [isPointer, setIsPointer] = useState(false)
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isPointer, setIsPointer] = useState(false);
 
   useEffect(() => {
     // Show the cursor follower after a short delay to prevent initial animation
     const timer = setTimeout(() => {
-      setIsVisible(true)
-    }, 500)
+      setIsVisible(true);
+    }, 500);
 
     const updatePosition = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY })
-    }
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
 
     const updateHoverState = () => {
-      const hoveredElement = document.elementFromPoint(position.x, position.y)
-      const isHoverable =
+      const hoveredElement = document.elementFromPoint(position.x, position.y);
+      const isHoverable = Boolean(
         hoveredElement?.tagName === "BUTTON" ||
-        hoveredElement?.tagName === "A" ||
-        hoveredElement?.closest("button") ||
-        hoveredElement?.closest("a") ||
-        window.getComputedStyle(hoveredElement || document.body).cursor === "pointer"
+          hoveredElement?.tagName === "A" ||
+          hoveredElement?.closest("button") ||
+          hoveredElement?.closest("a") ||
+          window.getComputedStyle(hoveredElement || document.body).cursor ===
+            "pointer"
+      );
 
-      setIsHovering(isHoverable)
-      setIsPointer(window.getComputedStyle(document.body).cursor === "pointer")
-    }
+      setIsHovering(isHoverable);
+      setIsPointer(window.getComputedStyle(document.body).cursor === "pointer");
+    };
 
-    window.addEventListener("mousemove", updatePosition)
-    window.addEventListener("mouseover", updateHoverState)
+    window.addEventListener("mousemove", updatePosition);
+    window.addEventListener("mouseover", updateHoverState);
 
     return () => {
-      clearTimeout(timer)
-      window.removeEventListener("mousemove", updatePosition)
-      window.removeEventListener("mouseover", updateHoverState)
-    }
-  }, [position.x, position.y])
+      clearTimeout(timer);
+      window.removeEventListener("mousemove", updatePosition);
+      window.removeEventListener("mouseover", updateHoverState);
+    };
+  }, [position.x, position.y]);
 
-  if (!isVisible) return null
+  if (!isVisible) return null;
 
   return (
     <>
@@ -67,6 +69,5 @@ export function MouseFollower() {
         }}
       />
     </>
-  )
+  );
 }
-

@@ -22,7 +22,7 @@ const Footer = () => {
             className="rounded-full hover:bg-blue-500/20 hover:text-blue-500 transition-all duration-300"
             asChild
           >
-            <Link href="#">
+            <Link href="https://www.linkedin.com/in/muhammad-sami1/">
               <Linkedin className="w-5 h-5" />
             </Link>
           </Button>
@@ -32,7 +32,7 @@ const Footer = () => {
             className="rounded-full hover:bg-blue-500/20 hover:text-blue-500 transition-all duration-300"
             asChild
           >
-            <Link href="#">
+            <Link href="https://github.com/MuhammadSami1">
               <GitHub className="w-5 h-5" />
             </Link>
           </Button>

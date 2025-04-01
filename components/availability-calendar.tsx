@@ -1,51 +1,51 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card3D } from "@/components/3d-card"
-import { Calendar, Clock, CheckCircle2 } from "lucide-react"
+import { useState } from "react";
+import { Card3D } from "@/components/3d-card";
+import { Calendar, Clock, CheckCircle2 } from "lucide-react";
 
 export function AvailabilityCalendar() {
-  const [selectedMonth] = useState(new Date().getMonth())
-  const [selectedYear] = useState(new Date().getFullYear())
+  const [selectedMonth] = useState(new Date().getMonth());
+  const [selectedYear] = useState(new Date().getFullYear());
 
   // Generate days for the current month
-  const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate()
-  const firstDayOfMonth = new Date(selectedYear, selectedMonth, 1).getDay()
+  const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
+  const firstDayOfMonth = new Date(selectedYear, selectedMonth, 1).getDay();
 
   // Simulate availability data (0 = unavailable, 1 = partially available, 2 = fully available)
   const availabilityData: Record<number, number> = {
     1: 2,
     2: 2,
     3: 2,
-    4: 1,
+    4: 2,
     5: 0,
     6: 0,
-    7: 0,
+    7: 2,
     8: 2,
     9: 2,
-    10: 1,
-    11: 1,
+    10: 2,
+    11: 2,
     12: 0,
     13: 0,
-    14: 0,
+    14: 2,
     15: 2,
     16: 2,
     17: 2,
-    18: 1,
+    18: 2,
     19: 0,
     20: 0,
-    21: 0,
+    21: 2,
     22: 2,
     23: 2,
-    24: 1,
+    24: 2,
     25: 1,
     26: 0,
     27: 0,
-    28: 0,
+    28: 2,
     29: 2,
     30: 2,
     31: 1,
-  }
+  };
 
   const monthNames = [
     "January",
@@ -60,33 +60,36 @@ export function AvailabilityCalendar() {
     "October",
     "November",
     "December",
-  ]
+  ];
 
-  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   // Create calendar grid
-  const calendarDays = []
+  const calendarDays = [];
 
   // Add empty cells for days before the first day of the month
   for (let i = 0; i < firstDayOfMonth; i++) {
-    calendarDays.push(<div key={`empty-${i}`} className="h-9"></div>)
+    calendarDays.push(<div key={`empty-${i}`} className="h-9"></div>);
   }
 
   // Add cells for each day of the month
   for (let day = 1; day <= daysInMonth; day++) {
-    const availability = availabilityData[day] || 0
-    let availabilityClass = ""
-    let availabilityLabel = ""
+    const availability = availabilityData[day] || 0;
+    let availabilityClass = "";
+    let availabilityLabel = "";
 
     if (availability === 0) {
-      availabilityClass = "bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300"
-      availabilityLabel = "Unavailable"
+      availabilityClass =
+        "bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300";
+      availabilityLabel = "Unavailable";
     } else if (availability === 1) {
-      availabilityClass = "bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300"
-      availabilityLabel = "Partially Available"
+      availabilityClass =
+        "bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300";
+      availabilityLabel = "Partially Available";
     } else {
-      availabilityClass = "bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300"
-      availabilityLabel = "Available"
+      availabilityClass =
+        "bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300";
+      availabilityLabel = "Available";
     }
 
     calendarDays.push(
@@ -96,8 +99,8 @@ export function AvailabilityCalendar() {
         title={availabilityLabel}
       >
         {day}
-      </div>,
-    )
+      </div>
+    );
   }
 
   return (
@@ -136,7 +139,9 @@ export function AvailabilityCalendar() {
         </div>
         <div className="flex items-center">
           <div className="w-3 h-3 rounded-full bg-yellow-100 dark:bg-yellow-900/20 mr-1"></div>
-          <span className="text-gray-600 dark:text-gray-400">Partially Available</span>
+          <span className="text-gray-600 dark:text-gray-400">
+            Partially Available
+          </span>
         </div>
         <div className="flex items-center">
           <div className="w-3 h-3 rounded-full bg-red-100 dark:bg-red-900/20 mr-1"></div>
@@ -153,7 +158,7 @@ export function AvailabilityCalendar() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-600 dark:text-gray-400">
           <div className="flex items-center">
             <CheckCircle2 className="mr-2 h-3 w-3 text-green-500" />
-            <span>Monday - Friday: 9 AM - 6 PM (EST)</span>
+            <span>Monday - Friday: 4 AM - 1 PM (UTC)</span>
           </div>
           <div className="flex items-center">
             <CheckCircle2 className="mr-2 h-3 w-3 text-green-500" />
@@ -162,6 +167,5 @@ export function AvailabilityCalendar() {
         </div>
       </div>
     </Card3D>
-  )
+  );
 }
-

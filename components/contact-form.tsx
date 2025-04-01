@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card3D } from "@/components/3d-card"
-import { CheckCircle, Loader2 } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card3D } from "@/components/3d-card";
+import { CheckCircle, Loader2 } from "lucide-react";
 
 export function ContactForm() {
   const [formState, setFormState] = useState({
@@ -17,28 +17,30 @@ export function ContactForm() {
     budget: "",
     timeline: "",
     message: "",
-  })
+  });
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormState((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormState((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     // Simulate form submission
     setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSubmitted(true)
+      setIsSubmitting(false);
+      setIsSubmitted(true);
 
       // Reset form after showing success message
       setTimeout(() => {
-        setIsSubmitted(false)
+        setIsSubmitted(false);
         setFormState({
           name: "",
           email: "",
@@ -46,10 +48,10 @@ export function ContactForm() {
           budget: "",
           timeline: "",
           message: "",
-        })
-      }, 3000)
-    }, 1500)
-  }
+        });
+      }, 3000);
+    }, 1500);
+  };
 
   return (
     <Card3D
@@ -62,16 +64,22 @@ export function ContactForm() {
           <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-4">
             <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
           </div>
-          <h3 className="text-xl font-semibold mb-2 gradient-text">Message Sent Successfully!</h3>
+          <h3 className="text-xl font-semibold mb-2 gradient-text">
+            Message Sent Successfully!
+          </h3>
           <p className="text-gray-600 dark:text-gray-400 max-w-md">
-            Thank you for reaching out. I'll get back to you as soon as possible, usually within 24-48 hours.
+            Thank you for reaching out. I'll get back to you as soon as
+            possible, usually within 24-48 hours.
           </p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label htmlFor="name" className="text-sm text-gray-600 dark:text-gray-400">
+              <label
+                htmlFor="name"
+                className="text-sm text-gray-600 dark:text-gray-400"
+              >
                 Name <span className="text-red-500">*</span>
               </label>
               <Input
@@ -85,7 +93,10 @@ export function ContactForm() {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="email" className="text-sm text-gray-600 dark:text-gray-400">
+              <label
+                htmlFor="email"
+                className="text-sm text-gray-600 dark:text-gray-400"
+              >
                 Email <span className="text-red-500">*</span>
               </label>
               <Input
@@ -102,7 +113,10 @@ export function ContactForm() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="subject" className="text-sm text-gray-600 dark:text-gray-400">
+            <label
+              htmlFor="subject"
+              className="text-sm text-gray-600 dark:text-gray-400"
+            >
               Subject <span className="text-red-500">*</span>
             </label>
             <Input
@@ -118,7 +132,10 @@ export function ContactForm() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label htmlFor="budget" className="text-sm text-gray-600 dark:text-gray-400">
+              <label
+                htmlFor="budget"
+                className="text-sm text-gray-600 dark:text-gray-400"
+              >
                 Budget (USD)
               </label>
               <Input
@@ -131,7 +148,10 @@ export function ContactForm() {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="timeline" className="text-sm text-gray-600 dark:text-gray-400">
+              <label
+                htmlFor="timeline"
+                className="text-sm text-gray-600 dark:text-gray-400"
+              >
                 Timeline
               </label>
               <Input
@@ -146,7 +166,10 @@ export function ContactForm() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="message" className="text-sm text-gray-600 dark:text-gray-400">
+            <label
+              htmlFor="message"
+              className="text-sm text-gray-600 dark:text-gray-400"
+            >
               Message <span className="text-red-500">*</span>
             </label>
             <Textarea
@@ -178,11 +201,11 @@ export function ContactForm() {
           </div>
 
           <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-4">
-            By submitting this form, you agree to my privacy policy and terms of service.
+            By submitting this form, you agree to my privacy policy and terms of
+            service.
           </p>
         </form>
       )}
     </Card3D>
-  )
+  );
 }
-
