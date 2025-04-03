@@ -392,14 +392,16 @@ export default function Portfolio() {
                 </div>
                 <div className="flex flex-wrap gap-4 pt-4">
                   <Button className="rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1">
-                    View My Work
-                    <ArrowRight className="ml-2 w-4 h-4" />
+                    <Link href="#projects" className="flex items-center">
+                      View My Work
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Link>
                   </Button>
                   <Button
                     variant="outline"
                     className="rounded-full border-blue-500/50 hover:border-blue-500 hover:bg-blue-500/10 transition-all duration-300 transform hover:-translate-y-1"
                   >
-                    Contact Me
+                    <Link href="#contact">Contact Me</Link>
                   </Button>
                 </div>
               </div>
@@ -814,76 +816,6 @@ export default function Portfolio() {
               </div>
             </section>
             {/* Testimonials Section */}
-            <section
-              id="testimonials"
-              className="py-20 relative"
-              ref={(el) => {
-                sectionsRef.current.testimonials = el;
-              }}
-            >
-              {/* Decorative elements */}
-              <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
-
-              <div className="flex justify-between items-center mb-10">
-                <h2
-                  className={`text-3xl font-mono gradient-text font-bold ${fadeIn}`}
-                >
-                  Client Testimonials
-                </h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {testimonials.map((testimonial, index) => (
-                  <Card3D
-                    key={testimonial.id}
-                    className={`bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-lg ${fadeInDelay(
-                      100 * index
-                    )}`}
-                    glareIntensity={0.1}
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      {[...Array(5)].map((_, i) => (
-                        <svg
-                          key={i}
-                          className="w-5 h-5 text-yellow-400 fill-current"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
-                    </div>
-                    <p className="text-gray-700 dark:text-gray-300 italic mb-6 relative">
-                      <span className="absolute -top-4 -left-2 text-5xl text-blue-500/20">
-                        "
-                      </span>
-                      {testimonial.quote}
-                      <span className="absolute -bottom-4 -right-2 text-5xl text-blue-500/20">
-                        "
-                      </span>
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <div className="relative">
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 blur-sm opacity-70"></div>
-                        <Image
-                          src={testimonial.image || "/placeholder.svg"}
-                          alt={testimonial.name}
-                          width={50}
-                          height={50}
-                          className="rounded-full relative z-10 border-2 border-white dark:border-gray-800"
-                        />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold gradient-text">
-                          {testimonial.name}
-                        </h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                          {testimonial.role}, {testimonial.company}
-                        </p>
-                      </div>
-                    </div>
-                  </Card3D>
-                ))}
-              </div>
-            </section>
 
             {/* About Section */}
             <section
@@ -1167,12 +1099,23 @@ export default function Portfolio() {
                   love to hear from you.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Button className="rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1">
+                  <Button
+                    className="rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
+                    onClick={() =>
+                      (window.location.href =
+                        "mailto:muhammadsami1242@gmail.com?subject=Subject&body=Message%20text")
+                    }
+                  >
                     <Mail className="mr-2 h-4 w-4" />
                     Email Me Directly
                   </Button>
+
                   <Button
                     variant="outline"
+                    onClick={() =>
+                      (window.location.href =
+                        "https://calendar.google.com/calendar/u/0/r/eventedit?text=Meeting+with+[Name]&dates=[YYYYMMDD]T[HHMMSS]/[YYYYMMDD]T[HHMMSS]&details=[Details]&location=[Location]")
+                    }
                     className="rounded-full border-blue-500/50 hover:border-blue-500 hover:bg-blue-500/10 transition-all duration-300 transform hover:-translate-y-1"
                   >
                     <Calendar className="mr-2 h-4 w-4" />
@@ -1250,3 +1193,70 @@ export default function Portfolio() {
     </div>
   );
 }
+
+//<section
+//  id="testimonials"
+//  className="py-20 relative"
+//  ref={(el) => {
+//    sectionsRef.current.testimonials = el;
+//  }}
+//>
+//  {/* Decorative elements */}
+//  <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
+//
+// <div className="flex justify-between items-center mb-10">
+//    <h2 className={`text-3xl font-mono gradient-text font-bold ${fadeIn}`}>
+//      Client Testimonials
+//    </h2>
+//  </div>
+//  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+//    {testimonials.map((testimonial, index) => (
+//      <Card3D
+//        key={testimonial.id}
+//        className={`bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200           dark:border-gray-700 shadow-lg ${fadeInDelay(
+//          100 * index
+//        )}`}
+//        glareIntensity={0.1}
+//      >
+//        <div className="flex items-center gap-2 mb-2">
+//          {[...Array(5)].map((_, i) => (
+//            <svg
+//              key={i}
+//              className="w-5 h-5 text-yellow-400 fill-current"
+//              viewBox="0 0 20 20"
+//            >
+//              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+//            </svg>
+//          ))}
+//        </div>
+//        <p className="text-gray-700 dark:text-gray-300 italic mb-6 relative">
+//          <span className="absolute -top-4 -left-2 text-5xl text-blue-500/20">
+//            "
+//          </span>
+//          {testimonial.quote}
+//          <span className="absolute -bottom-4 -right-2 text-5xl text-blue-500/20">
+//            "
+//          </span>
+//        </p>
+//        <div className="flex items-center gap-3">
+//          <div className="relative">
+//            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 blur-sm opacity-70"></div>
+//            <Image
+//              src={testimonial.image || "/placeholder.svg"}
+//              alt={testimonial.name}
+//              width={50}
+//              height={50}
+//             className="rounded-full relative z-10 border-2 border-white dark:border-gray-800"
+//            />
+//          </div>
+//          <div>
+//            <h4 className="font-semibold gradient-text">{testimonial.name}</h4>
+//            <p className="text-sm text-gray-600 dark:text-gray-400">
+//              {testimonial.role}, {testimonial.company}
+//            </p>
+//          </div>
+//        </div>
+//      </Card3D>
+//    ))}
+//  </div>
+//</section>;
