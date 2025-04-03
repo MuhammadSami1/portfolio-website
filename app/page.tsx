@@ -179,14 +179,14 @@ export default function Portfolio() {
           <div className="space-y-10 h-full flex flex-col">
             {/* Profile Header */}
             <div className="flex items-center gap-4">
-              <div className="relative w-20 h-20">
+              <div className="relative w-20 h-20 xl:w-24 xl:h-24">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 animate-spin-slow blur-md opacity-70"></div>
                 <Image
-                  src="/placeholder.svg?height=80&width=80"
+                  src="/image.png?height=80&width=80"
                   alt="Profile"
                   width={80}
                   height={80}
-                  className="rounded-full border-2 border-blue-500 relative z-10"
+                  className="rounded-full object-center object-cover w-full h-full border-2 border-blue-500 relative z-10"
                 />
               </div>
               <div>
@@ -207,7 +207,7 @@ export default function Portfolio() {
             </div>
 
             {/* Theme Toggle */}
-            <div className="absolute top-1 right-8">
+            <div className="absolute top-8 right-8">
               <ThemeToggle />
             </div>
 
@@ -336,11 +336,11 @@ export default function Portfolio() {
               <div className="relative w-16 h-16">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 animate-spin-slow blur-md opacity-70"></div>
                 <Image
-                  src="/placeholder.svg?height=60&width=60"
+                  src="/image.png?height=60&width=60"
                   alt="Profile"
                   width={60}
                   height={60}
-                  className="rounded-full relative z-10"
+                  className="rounded-full object-center object-cover w-full h-full relative z-10"
                 />
               </div>
               <div>

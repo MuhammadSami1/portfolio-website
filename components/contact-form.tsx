@@ -8,48 +8,88 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card3D } from "@/components/3d-card";
 import { CheckCircle, Loader2 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { formType } from "@/types/formType";
+import { formSchema } from "@/lib/validation";
+import toast from "react-hot-toast";
+import emailjs from "@emailjs/browser";
 
 export function ContactForm() {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    budget: "",
-    timeline: "",
-    message: "",
-  });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormState((prev) => ({ ...prev, [name]: value }));
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<formType>({
+    resolver: yupResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
+
+  const sendEmail = async (params: {
+    to_name: string;
+    from_name: string;
+    reply_to: string;
+    message: string;
+    subject: string;
+  }) => {
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_TEMPLATE_ID!,
+        {
+          name: params.to_name, // This will be "MuhammadSami" in your email
+          form_name: params.from_name, // Sender's name
+          to_reply: params.reply_to, // Sender's email
+          message: params.message, // The message content
+          subject: params.subject, // Email subject
+          time: new Date().toLocaleString(), // Add timestamp
+        },
+        {
+          publicKey: process.env.NEXT_PUBLIC_PUBLIC_KEY!,
+          limitRate: {
+            throttle: 5000, // 1 email per 5 seconds
+          },
+        }
+      );
+      toast.success("Email sent successfully!");
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      toast.error("Failed to send email. Please try again later.");
+      throw error; // Re-throw to handle in onSubmit
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = (data: formType) => {
     setIsSubmitting(true);
 
     // Simulate form submission
-    setTimeout(() => {
+    setTimeout(async () => {
       setIsSubmitting(false);
       setIsSubmitted(true);
 
       // Reset form after showing success message
       setTimeout(() => {
         setIsSubmitted(false);
-        setFormState({
-          name: "",
-          email: "",
-          subject: "",
-          budget: "",
-          timeline: "",
-          message: "",
-        });
+        reset();
       }, 3000);
+      const params = {
+        to_name: "MuhammadSami",
+        from_name: data.name,
+        reply_to: data.email,
+        subject: data.subject,
+        message: data.message,
+      };
+
+      await sendEmail(params);
     }, 1500);
   };
 
@@ -73,8 +113,9 @@ export function ContactForm() {
           </p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* name */}
             <div className="space-y-2">
               <label
                 htmlFor="name"
@@ -84,14 +125,17 @@ export function ContactForm() {
               </label>
               <Input
                 id="name"
-                name="name"
-                value={formState.name}
-                onChange={handleChange}
                 placeholder="Your name"
-                required
+                {...register("name", { required: true })}
                 className="bg-gray-100 dark:bg-gray-700 border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300"
               />
+              {errors.name && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.name.message}
+                </p>
+              )}
             </div>
+            {/* email */}
             <div className="space-y-2">
               <label
                 htmlFor="email"
@@ -101,17 +145,19 @@ export function ContactForm() {
               </label>
               <Input
                 id="email"
-                name="email"
-                value={formState.email}
-                onChange={handleChange}
                 type="email"
                 placeholder="Your email"
-                required
+                {...register("email", { required: true })}
                 className="bg-gray-100 dark:bg-gray-700 border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300"
               />
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
           </div>
-
+          {/* subject */}
           <div className="space-y-2">
             <label
               htmlFor="subject"
@@ -121,50 +167,17 @@ export function ContactForm() {
             </label>
             <Input
               id="subject"
-              name="subject"
-              value={formState.subject}
-              onChange={handleChange}
               placeholder="What is this regarding?"
-              required
+              {...register("subject", { required: true })}
               className="bg-gray-100 dark:bg-gray-700 border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300"
             />
+            {errors.subject && (
+              <p className="mt-1 text-sm text-red-600">
+                {errors.subject.message}
+              </p>
+            )}
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label
-                htmlFor="budget"
-                className="text-sm text-gray-600 dark:text-gray-400"
-              >
-                Budget (USD)
-              </label>
-              <Input
-                id="budget"
-                name="budget"
-                value={formState.budget}
-                onChange={handleChange}
-                placeholder="Your budget"
-                className="bg-gray-100 dark:bg-gray-700 border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300"
-              />
-            </div>
-            <div className="space-y-2">
-              <label
-                htmlFor="timeline"
-                className="text-sm text-gray-600 dark:text-gray-400"
-              >
-                Timeline
-              </label>
-              <Input
-                id="timeline"
-                name="timeline"
-                value={formState.timeline}
-                onChange={handleChange}
-                placeholder="Expected timeline"
-                className="bg-gray-100 dark:bg-gray-700 border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300"
-              />
-            </div>
-          </div>
-
+          {/* Message */}
           <div className="space-y-2">
             <label
               htmlFor="message"
@@ -174,13 +187,15 @@ export function ContactForm() {
             </label>
             <Textarea
               id="message"
-              name="message"
-              value={formState.message}
-              onChange={handleChange}
               placeholder="Tell me about your project"
-              required
+              {...register("message", { required: true })}
               className="bg-gray-100 dark:bg-gray-700 border-gray-200 dark:border-gray-600 min-h-[150px] focus:border-blue-500 focus:ring-blue-500 transition-all duration-300"
             />
+            {errors.message && (
+              <p className="mt-1 text-sm text-red-600">
+                {errors.message.message}
+              </p>
+            )}
           </div>
 
           <div className="pt-2">

@@ -2,14 +2,14 @@ import type React from "react";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Muhammad Sami - MERN Stack Developer",
   description:
-    "Portfolio of Muhammad Sami, a MERN Stack Developer specializing in MongoDB, Express, React, and Node.js",
-  generator: "v0.dev",
+    "Portfolio of Muhammad Sami, a MERN Stack Developer specializing in NextJs, React, Express, Node.js, and MongoDB",
 };
 
 export default function RootLayout({
@@ -26,6 +26,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster position="top-center" reverseOrder={false} />
           {children}
         </ThemeProvider>
       </body>
