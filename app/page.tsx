@@ -42,13 +42,16 @@ import { AvailabilityCalendar } from "@/components/availability-calendar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Footer from "@/components/Footer";
 import { TypingEffect } from "@/components/typing-effect";
-import { stats, skillsData, projects, testimonials } from "@/ constants/data";
+import { stats, skillsData, projects } from "@/ constants/data";
+import { GlobeDemo } from "@/components/GlobeDemo";
+import Loading from "@/app/loading";
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { theme } = useTheme();
 
   // Refs for scroll animations
@@ -107,6 +110,19 @@ export default function Portfolio() {
   useEffect(() => {
     setMounted(true);
   }, []);
+  useEffect(() => {
+    const loadData = async () => {
+      // Simulate loading (replace with actual data fetching)
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setIsLoading(false);
+    };
+
+    loadData();
+  }, []);
+
+  if (isLoading) {
+    return <Loading fullScreen={true} />;
+  }
 
   // Animation classes
   const fadeIn = "data-animate";
@@ -353,10 +369,11 @@ export default function Portfolio() {
               </div>
             </div>
           </div>
-
+          <GlobeDemo />
           {/* Main Content */}
           <div className="p-6 lg:p-10">
             {/* Hero Section */}
+
             <section
               id="home"
               className="min-h-[90vh] flex flex-col justify-center relative "
@@ -365,7 +382,7 @@ export default function Portfolio() {
               }}
             >
               {/* Decorative elements */}
-              <div className="absolute top-20 right-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-float-slow"></div>
+              <div className="absolute top-80 right-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-float-slow"></div>
               <div className="absolute bottom-20 left-20 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-float"></div>
 
               <div className={`space-y-8 max-w-3xl relative z-10 ${fadeIn}`}>
