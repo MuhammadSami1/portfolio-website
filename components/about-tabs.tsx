@@ -1,18 +1,34 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card3D } from "@/components/3d-card"
-import { Briefcase, GraduationCap, Heart, Coffee, Code, Lightbulb } from "lucide-react"
-import { TimelineItem } from "@/components/timeline-item"
+import { useState } from "react";
+import { Card3D } from "@/components/3d-card";
+import {
+  Briefcase,
+  GraduationCap,
+  ShieldCheck,
+  // Heart,
+  // Coffee,
+  // Code,
+  // Lightbulb,
+} from "lucide-react";
+import { TimelineItem } from "@/components/timeline-item";
 
 export function AboutTabs() {
-  const [activeTab, setActiveTab] = useState("experience")
+  const [activeTab, setActiveTab] = useState("experience");
 
   const tabs = [
-    { id: "experience", label: "Experience", icon: <Briefcase className="w-5 h-5" /> },
-    { id: "education", label: "Education", icon: <GraduationCap className="w-5 h-5" /> },
-    { id: "interests", label: "Interests", icon: <Heart className="w-5 h-5" /> },
-  ]
+    {
+      id: "experience",
+      label: "Experience",
+      icon: <Briefcase className="w-5 h-5" />,
+    },
+    {
+      id: "education",
+      label: "Education",
+      icon: <GraduationCap className="w-5 h-5" />,
+    },
+    // { id: "interests", label: "Interests", icon: <Heart className="w-5 h-5" /> },
+  ];
 
   return (
     <div className="space-y-6">
@@ -39,21 +55,21 @@ export function AboutTabs() {
         {activeTab === "experience" && (
           <div className="space-y-2">
             <TimelineItem
-              year="2021 - Present"
-              title="Senior MERN Stack Developer at TechInnovate"
-              description="Leading a team of developers to build scalable web applications using MongoDB, Express, React, and Node.js. Implemented CI/CD pipelines and improved application performance by 40%."
+              year="2024 - 2024"
+              title="Frontend Developer"
+              description="Contributed to the development of innovative web solutions by leveraging cutting-edge technologies. During my tenure, I had the opportunity to work on multiple high-impact projects, honing my skills."
               icon={<Briefcase className="w-5 h-5" />}
             />
             <TimelineItem
-              year="2019 - 2021"
-              title="Full Stack Developer at WebSolutions Inc."
-              description="Developed and maintained multiple client projects using the MERN stack. Collaborated with UX designers to implement responsive and accessible user interfaces."
-              icon={<Briefcase className="w-5 h-5" />}
-            />
-            <TimelineItem
-              year="2018 - 2019"
-              title="Frontend Developer at CreativeDigital"
+              year="2024 - 2024"
+              title="Frontend Web Developer"
               description="Specialized in building interactive user interfaces with React. Worked on performance optimization and implemented state management solutions using Redux."
+              icon={<Briefcase className="w-5 h-5" />}
+            />
+            <TimelineItem
+              year="2020 - 2022"
+              title="IT Technician"
+              description="IT Technician with expertise in hardware/software troubleshooting, network maintenance, and system administration. Proficient in diagnosing technical issues, installing/configuring systems, and providing user support."
               icon={<Briefcase className="w-5 h-5" />}
               isLast={true}
             />
@@ -63,28 +79,24 @@ export function AboutTabs() {
         {activeTab === "education" && (
           <div className="space-y-2">
             <TimelineItem
-              year="2016 - 2018"
-              title="Master's in Computer Science"
-              description="University of Technology, specializing in Web Technologies and Distributed Systems. Graduated with honors and completed a thesis on scalable microservices architecture."
+              year="2021 - 2025"
+              title="Bachelor's in Computer Science"
+              description="Virtual University, specializing in Web Technologies and Distributed Systems. Graduated with honors and completed a thesis on scalable microservices architecture."
               icon={<GraduationCap className="w-5 h-5" />}
             />
             <TimelineItem
-              year="2012 - 2016"
-              title="Bachelor's in Software Engineering"
-              description="State University, with a focus on software development methodologies and programming paradigms. Participated in multiple hackathons and coding competitions."
-              icon={<GraduationCap className="w-5 h-5" />}
-            />
-            <TimelineItem
-              year="2010 - 2012"
-              title="Associate's Degree in Web Development"
-              description="Community College, where I built a foundation in HTML, CSS, JavaScript, and basic backend technologies. Completed several internships during this period."
-              icon={<GraduationCap className="w-5 h-5" />}
-              isLast={true}
+              year="2023 - 2024"
+              title="CPA: Programming Essentials in C++"
+              description="This Statement of Achievement is to acknowledge that during the
+                  course CPA: Programming Essentials in C++, the student has
+                  been able to accomplish coding tasks related to the basics of
+                  programming in the C++ language."
+              icon={<ShieldCheck className="w-5 h-5" />}
             />
           </div>
         )}
 
-        {activeTab === "interests" && (
+        {/* {activeTab === "interests" && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card3D className="bg-white dark:bg-gray-800 p-5 rounded-xl border border-gray-200 dark:border-gray-700">
               <div className="flex items-start gap-3">
@@ -146,9 +158,8 @@ export function AboutTabs() {
               </div>
             </Card3D>
           </div>
-        )}
+        )} */}
       </div>
     </div>
-  )
+  );
 }
-

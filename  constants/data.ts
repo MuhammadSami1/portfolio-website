@@ -24,18 +24,14 @@ export const stats = [
 ];
 
 export const skillsData = [
-  { name: "MongoDB", level: 95, category: "Backend" },
-  { name: "Express.js", level: 90, category: "Backend" },
-  { name: "React.js", level: 95, category: "Frontend" },
-  { name: "Node.js", level: 92, category: "Backend" },
-  { name: "JavaScript", level: 95, category: "Frontend" },
-  { name: "TypeScript", level: 85, category: "Frontend" },
   { name: "Next.js", level: 88, category: "Frontend" },
+  { name: "TypeScript", level: 85, category: "Frontend" },
+  { name: "JavaScript", level: 90, category: "Frontend" },
+  { name: "React.js", level: 95, category: "Frontend" },
   { name: "Redux", level: 80, category: "Frontend" },
-  { name: "GraphQL", level: 75, category: "Backend" },
-  { name: "REST API", level: 90, category: "Backend" },
-  { name: "AWS", level: 70, category: "DevOps" },
-  { name: "Docker", level: 75, category: "DevOps" },
+  { name: "Node.js", level: 85, category: "Backend" },
+  { name: "Express.js", level: 83, category: "Backend" },
+  { name: "MongoDB", level: 81, category: "Backend" },
 ];
 
 export const projects = [

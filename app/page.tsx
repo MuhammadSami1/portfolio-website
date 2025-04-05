@@ -730,7 +730,7 @@ export default function Portfolio() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className={`space-y-6 ${fadeIn}`}>
-                  {skillsData.slice(0, 6).map((skill) => (
+                  {skillsData.slice(0, 4).map((skill) => (
                     <div key={skill.name} className="space-y-2 group">
                       <div className="flex justify-between">
                         <span className="group-hover:text-blue-500 transition-colors">
@@ -760,7 +760,7 @@ export default function Portfolio() {
                   ))}
                 </div>
                 <div className={`space-y-6 ${fadeInDelay(200)}`}>
-                  {skillsData.slice(6).map((skill) => (
+                  {skillsData.slice(4).map((skill) => (
                     <div key={skill.name} className="space-y-2 group">
                       <div className="flex justify-between">
                         <span className="group-hover:text-blue-500 transition-colors">
@@ -799,18 +799,12 @@ export default function Portfolio() {
                 <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-md rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
                     {[
-                      "MongoDB",
-                      "Express",
-                      "React",
-                      "Node.js",
-                      "Redux",
                       "Next.js",
                       "TypeScript",
-                      "GraphQL",
-                      "REST API",
-                      "JWT",
-                      "Socket.io",
-                      "Docker",
+                      "React",
+                      "Redux",
+                      "Node.js",
+                      "MongoDB",
                     ].map((tool, i) => (
                       <Card3D
                         key={tool}
@@ -859,16 +853,19 @@ export default function Portfolio() {
                       <div className="relative w-full aspect-square max-w-[300px] mx-auto">
                         <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 blur-md opacity-70"></div>
                         <Image
-                          src="/placeholder.svg?height=300&width=300"
-                          alt="Tony B."
+                          src="/image1.png?height=300&width=300"
+                          alt="Muhammad Sami"
                           width={300}
                           height={300}
-                          className="rounded-xl relative z-10 object-cover"
+                          className="rounded-xl w-full h-full relative z-10 object-cover"
                         />
                       </div>
 
                       <div className="mt-6 space-y-4">
-                        <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 flex items-center justify-center gap-2">
+                        <Button
+                          className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 flex items-center justify-center gap-2"
+                          onClick={handleDownload}
+                        >
                           <Download className="w-4 h-4" />
                           Download Resume
                         </Button>
@@ -879,21 +876,27 @@ export default function Portfolio() {
                             size="icon"
                             className="rounded-full hover:bg-blue-500/20 hover:text-blue-500 transition-all duration-300"
                           >
-                            <Twitter className="w-5 h-5" />
+                            <Link href="#">
+                              <Twitter className="w-5 h-5" />
+                            </Link>
                           </Button>
                           <Button
                             variant="outline"
                             size="icon"
                             className="rounded-full hover:bg-blue-500/20 hover:text-blue-500 transition-all duration-300"
                           >
-                            <Linkedin className="w-5 h-5" />
+                            <Link href="https://www.linkedin.com/in/muhammad-sami1/">
+                              <Linkedin className="w-5 h-5" />
+                            </Link>
                           </Button>
                           <Button
                             variant="outline"
                             size="icon"
                             className="rounded-full hover:bg-blue-500/20 hover:text-blue-500 transition-all duration-300"
                           >
-                            <GitHub className="w-5 h-5" />
+                            <Link href="https://github.com/MuhammadSami1">
+                              <GitHub className="w-5 h-5" />
+                            </Link>
                           </Button>
                         </div>
                       </div>
@@ -906,31 +909,22 @@ export default function Portfolio() {
                         </h3>
                         <div className="space-y-4 text-gray-700 dark:text-gray-300">
                           <p>
-                            Hello! I'm Tony, a passionate MERN stack developer
-                            with over 5 years of experience building web
-                            applications that combine beautiful interfaces with
-                            powerful functionality.
+                            Hello! I'm Muhammad Sami, a passionate MERN stack
+                            developer with over 6 months of experience building
+                            web applications that combine beautiful interfaces
+                            with powerful functionality.
                           </p>
                           <p>
                             My journey in web development began with a
                             fascination for creating interactive experiences.
                             This led me to specialize in the MERN stack
-                            (MongoDB, Express, React, and Node.js), where I've
-                            found the perfect balance between frontend
-                            creativity and backend robustness.
+                            (MongoDB, Express, React, and Node.js).
                           </p>
                           <p>
                             I approach each project with a focus on clean code,
                             performance optimization, and user-centered design.
-                            Whether I'm building a complex e-commerce platform
-                            or a simple landing page, I bring the same level of
-                            dedication and attention to detail.
-                          </p>
-                          <p>
-                            When I'm not coding, you'll find me contributing to
-                            open-source projects, mentoring junior developers,
-                            or exploring new technologies to stay at the cutting
-                            edge of web development.
+                            I bring the same level of dedication and attention
+                            to detail.
                           </p>
                         </div>
                       </div>
@@ -944,9 +938,7 @@ export default function Portfolio() {
                             <h4 className="text-sm text-gray-500 dark:text-gray-400">
                               Location
                             </h4>
-                            <p className="font-medium">
-                              San Francisco, California
-                            </p>
+                            <p className="font-medium">Lahore, Pakistan</p>
                           </div>
                         </div>
 
@@ -958,7 +950,7 @@ export default function Portfolio() {
                             <h4 className="text-sm text-gray-500 dark:text-gray-400">
                               Experience
                             </h4>
-                            <p className="font-medium">5+ Years</p>
+                            <p className="font-medium">1+ Years</p>
                           </div>
                         </div>
 
@@ -971,7 +963,7 @@ export default function Portfolio() {
                               Education
                             </h4>
                             <p className="font-medium">
-                              Master's in Computer Science
+                              Bachelor's in Computer Science
                             </p>
                           </div>
                         </div>
@@ -994,7 +986,7 @@ export default function Portfolio() {
               </div>
 
               {/* Stats */}
-              <div
+              {/* <div
                 className={`grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 ${fadeIn}`}
               >
                 {stats.map((stat, index) => (
@@ -1019,7 +1011,7 @@ export default function Portfolio() {
                     </div>
                   </Card3D>
                 ))}
-              </div>
+              </div> */}
 
               {/* Experience, Education, Interests Tabs */}
               <div className={`mb-16 ${fadeInDelay(200)}`}>
@@ -1034,20 +1026,6 @@ export default function Portfolio() {
               >
                 {[
                   {
-                    title: "MongoDB",
-                    icon: Database,
-                    color: "green",
-                    description:
-                      "NoSQL database for flexible, scalable data storage with powerful querying capabilities.",
-                  },
-                  {
-                    title: "Express.js",
-                    icon: Server,
-                    color: "red",
-                    description:
-                      "Fast, unopinionated web framework for Node.js that simplifies API development.",
-                  },
-                  {
                     title: "React.js",
                     icon: Code,
                     color: "blue",
@@ -1060,6 +1038,21 @@ export default function Portfolio() {
                     color: "green",
                     description:
                       "JavaScript runtime for building fast and scalable server-side applications.",
+                  },
+                  {
+                    title: "Express.js",
+                    icon: Server,
+                    color: "red",
+                    description:
+                      "Fast, unopinionated web framework for Node.js that simplifies API development.",
+                  },
+
+                  {
+                    title: "MongoDB",
+                    icon: Database,
+                    color: "green",
+                    description:
+                      "NoSQL database for flexible, scalable data storage with powerful querying capabilities.",
                   },
                 ].map((item, index) => (
                   <Card3D
