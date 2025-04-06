@@ -1,3 +1,4 @@
+import { TProjects } from "@/types/types";
 import {
   GitlabIcon as GitHub,
   CheckCircle,
@@ -34,42 +35,63 @@ export const skillsData = [
   { name: "MongoDB", level: 81, category: "Backend" },
 ];
 
-export const projects = [
+export const projects: TProjects[] = [
   {
     id: 1,
-    title: "E-commerce Platform",
+    title: "Kanban Board",
     category: "Full Stack",
     description:
-      "Complete MERN stack e-commerce solution with payment integration, admin dashboard, and real-time inventory management.",
-    image: "/placeholder.svg?height=600&width=600",
-    tech: ["MongoDB", "Express", "React", "Node.js", "Redux", "Stripe API"],
+      "Built an interactive Kanban board with drag-and-drop, task management, and subtask tracking features.",
+    image: "/projects/kanban-board.png?height=600&width=600",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "React-Hook-Form",
+      "Framer-Motion",
+      "Tailwind-CSS",
+      "Zustand",
+      "DND-Kit",
+    ],
+    link: "https://kanban-board-ten-kappa.vercel.app/",
   },
   {
     id: 2,
-    title: "Real-time Chat Application",
-    category: "Full Stack",
+    title: "Comments Section",
+    category: "Frontend",
     description:
-      "Scalable chat platform with real-time messaging, user authentication, and message persistence using Socket.io and MongoDB.",
-    image: "/placeholder.svg?height=600&width=600",
-    tech: ["MongoDB", "Express", "React", "Node.js", "Socket.io", "JWT"],
+      "Developed a fully functional comment section with features like add, edit, delete, and nested replies.",
+    image: "/projects/interactive-comments-section.png?height=600&width=600",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Husky",
+      "Prettier",
+      "Tailwind-CSS",
+      "ESLint",
+      "Jotai",
+    ],
+    link: "https://interactive-comments-section-puce.vercel.app/",
   },
+
   {
     id: 3,
-    title: "Task Management System",
+    title: "Logical Labs",
     category: "Full Stack",
     description:
-      "Collaborative project management tool with drag-and-drop interfaces, team collaboration features, and automated notifications.",
-    image: "/placeholder.svg?height=600&width=600",
-    tech: ["MongoDB", "Express", "React", "Node.js", "Redux", "WebSockets"],
+      "Developed a job search platform using Next.js, TypeScript, and Tailwind CSS, providing a responsive UI.",
+    image: "/projects/logical-labs.png?height=600&width=600",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Clerk"],
+    link: "https://logical-labs.vercel.app/",
   },
   {
     id: 4,
-    title: "Healthcare Portal",
-    category: "Full Stack",
+    title: "E-Commerce Website",
+    category: "Frontend",
     description:
-      "Patient-centered healthcare portal with appointment scheduling, medical record management, and secure doctor-patient communication.",
-    image: "/placeholder.svg?height=600&width=600",
-    tech: ["MongoDB", "Express", "React", "Node.js", "GraphQL", "Auth0"],
+      "Led the development of a sophisticated e-commerce platform using React, Tailwind CSS, Redux, and MockAPI.",
+    image: "/projects/inwood.png?height=600&width=600",
+    tech: ["React", "Redux", "Tailwind-CSS", "Vite"],
+    link: "https://inwood-khaki.vercel.app/",
   },
   {
     id: 5,
@@ -79,6 +101,7 @@ export const projects = [
       "Headless CMS with custom API endpoints, content modeling, and multi-user collaboration features for content creators.",
     image: "/placeholder.svg?height=600&width=600",
     tech: ["MongoDB", "Express", "Node.js", "GraphQL", "Redis", "AWS S3"],
+    link: "https://kanban-board-ten-kappa.vercel.app/",
   },
   {
     id: 6,
@@ -88,6 +111,27 @@ export const projects = [
       "Interactive data visualization dashboard with real-time updates, customizable widgets, and data export capabilities.",
     image: "/placeholder.svg?height=600&width=600",
     tech: ["React", "Redux", "D3.js", "WebSockets", "Material UI", "Chart.js"],
+    link: "https://kanban-board-ten-kappa.vercel.app/",
+  },
+  {
+    id: 7,
+    title: "Analytics Dashboard",
+    category: "Frontend",
+    description:
+      "Interactive data visualization dashboard with real-time updates, customizable widgets, and data export capabilities.",
+    image: "/placeholder.svg?height=600&width=600",
+    tech: ["React", "Redux", "D3.js", "WebSockets", "Material UI", "Chart.js"],
+    link: "https://kanban-board-ten-kappa.vercel.app/",
+  },
+  {
+    id: 8,
+    title: "Analytics Dashboard",
+    category: "Frontend",
+    description:
+      "Interactive data visualization dashboard with real-time updates, customizable widgets, and data export capabilities.",
+    image: "/placeholder.svg?height=600&width=600",
+    tech: ["React", "Redux", "D3.js", "WebSockets", "Material UI", "Chart.js"],
+    link: "https://kanban-board-ten-kappa.vercel.app/",
   },
 ];
 

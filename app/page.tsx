@@ -442,17 +442,10 @@ export default function Portfolio() {
                 >
                   Featured Projects
                 </h2>
-                <Button
-                  variant="ghost"
-                  className={`flex items-center gap-2 hover:bg-blue-500/10 transition-all duration-300 ${fadeIn}`}
-                >
-                  View All Projects
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
               </div>
 
               <Tabs defaultValue="all" className="mb-10">
-                <TabsList className="bg-white dark:bg-gray-800 p-1 rounded-full border border-gray-200 dark:border-gray-700">
+                {/* <TabsList className="bg-white dark:bg-gray-800 p-1 rounded-full border border-gray-200 dark:border-gray-700">
                   <TabsTrigger value="all" className="rounded-full">
                     All
                   </TabsTrigger>
@@ -465,67 +458,66 @@ export default function Portfolio() {
                   <TabsTrigger value="backend" className="rounded-full">
                     Backend
                   </TabsTrigger>
-                </TabsList>
-                <TabsContent value="all" className="mt-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {projects.map((project, index) => (
-                      <Card3D
-                        key={project.id}
-                        className={`group relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg ${fadeInDelay(
-                          100 * index
-                        )}`}
-                      >
-                        <div className="aspect-square relative">
-                          <Image
-                            src={project.image || "/placeholder.svg"}
-                            alt={project.title}
-                            fill
-                            className="object-cover transition-transform group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                            <div>
-                              <span className="text-sm text-blue-400">
-                                {project.category}
-                              </span>
-                              <h3 className="text-xl font-semibold text-white">
-                                {project.title}
-                              </h3>
-                              <p className="text-gray-300 text-sm mt-2">
-                                {project.description}
-                              </p>
-                              <div className="flex flex-wrap gap-2 mt-3">
-                                {project.tech.slice(0, 3).map((tech, i) => (
-                                  <span
-                                    key={i}
-                                    className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full"
-                                  >
-                                    {tech}
-                                  </span>
-                                ))}
-                                {project.tech.length > 3 && (
-                                  <span className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full">
-                                    +{project.tech.length - 3} more
-                                  </span>
-                                )}
-                              </div>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="mt-4 p-0 h-auto text-white"
-                              >
-                                <span className="flex items-center gap-1">
-                                  View Project{" "}
-                                  <ExternalLink className="w-3 h-3" />
+                </TabsList> */}
+                {/* <TabsContent value="all" className=""></TabsContent> */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                  {projects.slice(0, 6).map((project, index) => (
+                    <Card3D
+                      key={project.id}
+                      className={`group relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg ${fadeInDelay(
+                        100 * index
+                      )}`}
+                    >
+                      <div className="aspect-square relative">
+                        <Image
+                          src={project.image || "/placeholder.svg"}
+                          alt={project.title}
+                          fill
+                          className="w-full h-full object-center transition-transform group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                          <div>
+                            <h3 className="text-xl font-semibold text-white">
+                              {project.title}
+                            </h3>
+                            <p className="text-white text-sm mt-2">
+                              {project.description}
+                            </p>
+                            <div className="flex flex-wrap gap-2 mt-3">
+                              {project.tech.slice(0, 3).map((tech, i) => (
+                                <span
+                                  key={i}
+                                  className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full"
+                                >
+                                  {tech}
                                 </span>
-                              </Button>
+                              ))}
+                              {project.tech.length > 3 && (
+                                <span className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full">
+                                  +{project.tech.length - 3} more
+                                </span>
+                              )}
                             </div>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="mt-4 p-0 h-auto text-white"
+                              onClick={() =>
+                                (window.location.href = project.link)
+                              }
+                            >
+                              <span className="flex items-center gap-1">
+                                View Project{" "}
+                                <ExternalLink className="w-3 h-3" />
+                              </span>
+                            </Button>
                           </div>
                         </div>
-                      </Card3D>
-                    ))}
-                  </div>
-                </TabsContent>
-                <TabsContent value="full-stack" className="mt-6">
+                      </div>
+                    </Card3D>
+                  ))}
+                </div>
+                {/* <TabsContent value="full-stack" className="mt-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {projects
                       .filter((p) => p.category === "Full Stack")
@@ -707,7 +699,7 @@ export default function Portfolio() {
                         </Card3D>
                       ))}
                   </div>
-                </TabsContent>
+                </TabsContent> */}
               </Tabs>
             </section>
             {/* Skills Section */}
@@ -910,7 +902,7 @@ export default function Portfolio() {
                         <div className="space-y-4 text-gray-700 dark:text-gray-300">
                           <p>
                             Hello! I'm Muhammad Sami, a passionate MERN stack
-                            developer with over 6 months of experience building
+                            developer with over +1 year of experience building
                             web applications that combine beautiful interfaces
                             with powerful functionality.
                           </p>
