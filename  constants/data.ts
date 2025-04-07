@@ -95,72 +95,83 @@ export const projects: TProjects[] = [
   },
   {
     id: 5,
-    title: "Content Management System",
-    category: "Backend",
+    title: "BistroBliss",
+    category: "Frontend",
     description:
-      "Headless CMS with custom API endpoints, content modeling, and multi-user collaboration features for content creators.",
-    image: "/placeholder.svg?height=600&width=600",
-    tech: ["MongoDB", "Express", "Node.js", "GraphQL", "Redis", "AWS S3"],
-    link: "https://kanban-board-ten-kappa.vercel.app/",
+      "Created a visually appealing and user-friendly restaurant website using React and Tailwind CSS.",
+    image: "/projects/BistroBliss.png?height=600&width=600",
+    tech: ["React", "Tailwind-CSS", "Vite"],
+    link: "https://bistro-bliss-beryl.vercel.app/",
   },
   {
     id: 6,
-    title: "Analytics Dashboard",
-    category: "Frontend",
+    title: "Ticket-App",
+    category: "Full Stack",
     description:
-      "Interactive data visualization dashboard with real-time updates, customizable widgets, and data export capabilities.",
-    image: "/placeholder.svg?height=600&width=600",
-    tech: ["React", "Redux", "D3.js", "WebSockets", "Material UI", "Chart.js"],
-    link: "https://kanban-board-ten-kappa.vercel.app/",
+      "Interactive data visualization dashboard with real-time updates, customizable widgets.",
+    image: "/projects/Ticket-App.png?height=600&width=600",
+    tech: ["Next.js", "MongoDB", "Tailwind CSS"],
+
+    link: "https://github.com/MuhammadSami1/Ticket-App",
   },
   {
     id: 7,
-    title: "Analytics Dashboard",
+    title: "UserPostApp",
     category: "Frontend",
     description:
-      "Interactive data visualization dashboard with real-time updates, customizable widgets, and data export capabilities.",
-    image: "/placeholder.svg?height=600&width=600",
-    tech: ["React", "Redux", "D3.js", "WebSockets", "Material UI", "Chart.js"],
-    link: "https://kanban-board-ten-kappa.vercel.app/",
+      "Enhanced application functionality with Forms API synchronization.",
+    image: "/projects/UserPostApp.png?height=600&width=600",
+    tech: ["React", "Redux", "Tailwind-CSS", "Vite"],
+    link: "https://crud-app-mu-nine.vercel.app/",
   },
   {
     id: 8,
-    title: "Analytics Dashboard",
+    title: "Astroship-Website",
     category: "Frontend",
     description:
-      "Interactive data visualization dashboard with real-time updates, customizable widgets, and data export capabilities.",
-    image: "/placeholder.svg?height=600&width=600",
-    tech: ["React", "Redux", "D3.js", "WebSockets", "Material UI", "Chart.js"],
-    link: "https://kanban-board-ten-kappa.vercel.app/",
+      "Created a responsive website featuring 5 – 6 pages, ensuring a consistent and engaging user experience across alldevices.",
+    image: "/projects/Astroship-Website.png?height=600&width=600",
+    tech: ["React", "Tailwind-CSS", "Vite"],
+    link: "https://astroship-website.vercel.app/",
+  },
+  {
+    id: 9,
+    title: "Mern-ChatApp",
+    category: "Full Stack",
+    description:
+      "Developed a real-time chat application using MongoDB, Express, React, and Node.js, with Socket.io for live messaging. ",
+    image: "/projects/Mern-ChatApp.png?height=600&width=600",
+    tech: ["MERN", "Tailwind-CSS", "Daisy UI"],
+    link: "https://github.com/MuhammadSami1/Mern-ChatApp",
   },
 ];
 
-export const testimonials = [
-  {
-    id: 1,
-    name: "Sarah Johnson",
-    role: "CTO",
-    company: "TechCorp",
-    quote:
-      "Tony delivered an exceptional MERN stack application that exceeded our expectations. His deep understanding of both frontend and backend technologies resulted in a seamless, high-performance solution.",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 2,
-    name: "Michael Chen",
-    role: "Startup Founder",
-    company: "InnovateLabs",
-    quote:
-      "Working with Tony was a game-changer for our startup. His full-stack expertise helped us launch our MVP in record time, with clean code and excellent architecture decisions.",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 3,
-    name: "Emily Rodriguez",
-    role: "Product Manager",
-    company: "GlobalSoft",
-    quote:
-      "Tony's ability to translate complex business requirements into elegant technical solutions is remarkable. His MERN stack implementation has been robust, scalable, and easy to maintain.",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-];
+// export const testimonials = [
+//   {
+//     id: 1,
+//     name: "Sarah Johnson",
+//     role: "CTO",
+//     company: "TechCorp",
+//     quote:
+//       "Tony delivered an exceptional MERN stack application that exceeded our expectations. His deep understanding of both frontend and backend technologies resulted in a seamless, high-performance solution.",
+//     image: "/placeholder.svg?height=100&width=100",
+//   },
+//   {
+//     id: 2,
+//     name: "Michael Chen",
+//     role: "Startup Founder",
+//     company: "InnovateLabs",
+//     quote:
+//       "Working with Tony was a game-changer for our startup. His full-stack expertise helped us launch our MVP in record time, with clean code and excellent architecture decisions.",
+//     image: "/placeholder.svg?height=100&width=100",
+//   },
+//   {
+//     id: 3,
+//     name: "Emily Rodriguez",
+//     role: "Product Manager",
+//     company: "GlobalSoft",
+//     quote:
+//       "Tony's ability to translate complex business requirements into elegant technical solutions is remarkable. His MERN stack implementation has been robust, scalable, and easy to maintain.",
+//     image: "/placeholder.svg?height=100&width=100",
+//   },
+// ];

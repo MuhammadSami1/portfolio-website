@@ -461,7 +461,7 @@ export default function Portfolio() {
                 </TabsList> */}
                 {/* <TabsContent value="all" className=""></TabsContent> */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-                  {projects.slice(0, 6).map((project, index) => (
+                  {projects.map((project, index) => (
                     <Card3D
                       key={project.id}
                       className={`group relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg ${fadeInDelay(
