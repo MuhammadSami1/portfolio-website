@@ -99,12 +99,12 @@ export function AvailabilityCalendar() {
         title={availabilityLabel}
       >
         {day}
-      </div>
+      </div>,
     );
   }
 
   return (
-    <Card3D className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-lg">
+    <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-lg">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold gradient-text flex items-center">
           <Calendar className="mr-2 h-5 w-5" />
@@ -166,6 +166,6 @@ export function AvailabilityCalendar() {
           </div>
         </div>
       </div>
-    </Card3D>
+    </div>
   );
 }
